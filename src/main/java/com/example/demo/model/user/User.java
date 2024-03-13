@@ -26,15 +26,4 @@ public class User {
     private String email;
     private String telefone;
     private LocalDateTime dataCadastro;
-
-    public static User convert(UserDTO userDTO) {
-        User user = new User();
-        user.setNome(userDTO.getNome());
-        user.setEndereco(userDTO.getEndereco());
-        user.setCpf(userDTO.getCpf());
-        user.setEmail(userDTO.getEmail());
-        user.setTelefone(userDTO.getTelefone());
-        user.setDataCadastro(userDTO.getDataCadastro());
-        return user;
-    }
 }

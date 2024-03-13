@@ -1,7 +1,8 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.UserDTO;
+import com.example.demo.model.user.DTOConverter;
 import com.example.demo.model.user.User;
-import com.example.demo.model.user.UserDTO;
 import com.example.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -22,7 +23,7 @@ public class UserService {
 
         return usuarios
                 .stream()
-                .map(UserDTO::convert)
+                .map(DTOConverter::convert)
                 .collect(Collectors.toList());
     }
 
@@ -30,13 +31,13 @@ public class UserService {
         User usuario = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado")
                 );
-        return UserDTO.convert(usuario);
+        return DTOConverter.convert(usuario);
     }
 
     public UserDTO inserirUsuario(UserDTO userDTO) {
         userDTO.setDataCadastro(LocalDateTime.now());
-        User usuario = userRepository.save(User.convert(userDTO));
-        return UserDTO.convert(usuario);
+        User usuario = userRepository.save(DTOConverter.convert(userDTO));
+        return DTOConverter.convert(usuario);
     }
 
     public UserDTO removerUsuario(long userId) {
@@ -44,13 +45,13 @@ public class UserService {
                 .findById(userId).orElseThrow(() -> new RuntimeException(
                 ));
         userRepository.delete(user);
-        return UserDTO.convert(user);
+        return DTOConverter.convert(user);
     }
 
     public UserDTO getUsuarioByCpf(String cpf) {
         User usuario = userRepository.findByCpf(cpf);
         if (usuario != null) {
-            return UserDTO.convert(usuario);
+            return DTOConverter.convert(usuario);
         }
         return null;
     }
@@ -59,7 +60,7 @@ public class UserService {
         List<User> usuarios = userRepository.buscarUsuario(name);
         return usuarios
                 .stream()
-                .map(UserDTO::convert)
+                .map(DTOConverter::convert)
                 .collect(Collectors.toList());
     }
 
@@ -79,12 +80,12 @@ public class UserService {
             usuario.setEndereco(userDTO.getEndereco());
         }
         usuario = userRepository.save(usuario);
-        return UserDTO.convert(usuario);
+        return DTOConverter.convert(usuario);
     }
 
     public Page<UserDTO> getUsuariosPaginados(Pageable page){
         Page<User> usuarios = userRepository.findAll(page);
 
-        return usuarios.map(UserDTO::convert);
+        return usuarios.map(DTOConverter::convert);
     }
 }

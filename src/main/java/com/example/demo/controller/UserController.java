@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.user.User;
-import com.example.demo.model.user.UserDTO;
+import com.example.demo.dto.UserDTO;
 import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
