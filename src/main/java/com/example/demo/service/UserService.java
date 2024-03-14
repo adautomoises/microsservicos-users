@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.UserDTO;
+import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.model.user.DTOConverter;
 import com.example.demo.model.user.User;
 import com.example.demo.repository.UserRepository;
@@ -53,7 +54,7 @@ public class UserService {
         if (usuario != null) {
             return DTOConverter.convert(usuario);
         }
-        return null;
+        throw new UserNotFoundException();
     }
 
     public List<UserDTO> queryByName(String name) {
