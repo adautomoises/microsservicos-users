@@ -28,8 +28,10 @@ public class UserController {
     }
 
     @GetMapping("/{cpf}/cpf")
-    public UserDTO getUsuario(@PathVariable String cpf) {
-        return userService.getUsuarioByCpf(cpf);
+    public UserDTO getUsuario(
+            @RequestParam(name = "key") String key,
+            @PathVariable String cpf) {
+        return userService.getUsuarioByCpfAndKey(cpf, key);
     }
 
     @GetMapping("/search")

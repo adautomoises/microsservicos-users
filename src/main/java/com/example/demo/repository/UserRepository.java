@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    User findByCpf(String cpf);
+    User findByCpfAndKey(String cpf, String key);
 
     @Query(value = "SELECT * FROM users.user WHERE nome LIKE concat(:name, '%')", nativeQuery = true)
     List<User> buscarUsuario(@Param("name") String name);

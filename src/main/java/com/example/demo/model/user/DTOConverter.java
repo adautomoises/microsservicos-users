@@ -6,6 +6,7 @@ public class DTOConverter {
     public static UserDTO convert(User user) {
         UserDTO userDTO = new UserDTO();
         userDTO.setNome(user.getNome());
+        userDTO.setKey(user.getKey());
         userDTO.setEndereco(user.getEndereco());
         userDTO.setCpf(user.getCpf());
         userDTO.setEmail(user.getEmail());
@@ -17,6 +18,7 @@ public class DTOConverter {
     public static User convert(UserDTO userDTO) {
         User user = new User();
         user.setNome(userDTO.getNome());
+        user.setKey(userDTO.getKey());
         user.setEndereco(userDTO.getEndereco());
         user.setCpf(userDTO.getCpf());
         user.setEmail(userDTO.getEmail());
